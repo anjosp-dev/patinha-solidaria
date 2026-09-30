@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Patinha Solidária: ONG de proteção animal que resgata, cuida e encontra lares para cães e gatos vítimas de maus-tratos e abandono.">
+  <title>Patinha Solidária</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+</head>
+<body>
+  <a class="pular-link" href="#app">Pular para o conteúdo</a>
+
+  <!-- ===== CABEÇALHO (fixo em todas as "páginas" da SPA) ===== -->
+  <header class="header">
+    <div class="container header__barra">
+      <a class="logo" href="#/inicio" aria-label="Patinha Solidária, página inicial">
+        <img src="img/logo.svg" alt="" width="40" height="40">
+        <span>Patinha<strong>Solidária</strong></span>
+      </a>
+
+      <nav class="nav" aria-label="Menu principal">
+        <button class="nav__toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-principal"><span></span></button>
+        <div class="nav__overlay"></div>
+        <ul class="nav__lista" id="menu-principal">
+          <li class="nav__item"><a class="nav__link" href="#/inicio" data-rota="inicio">Início</a></li>
+          <li class="nav__item nav__item--dropdown">
+            <div class="nav__item-linha">
+              <a class="nav__link" href="#/adotar" data-rota="adotar">Adotar</a>
+              <button class="submenu__toggle" aria-expanded="false" aria-controls="submenu-adotar" aria-label="Abrir opções de adoção">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+            </div>
+            <ul class="submenu" id="submenu-adotar">
+              <li><a href="#/adotar?especie=cao">🐶 Cachorros</a></li>
+              <li><a href="#/adotar?especie=gato">🐱 Gatos</a></li>
+              <li><a href="#/quiz">✨ Qual pet combina comigo?</a></li>
+            </ul>
+          </li>
+          <li class="nav__item"><a class="nav__link" href="#/projetos" data-rota="projetos">Projetos</a></li>
+          <li class="nav__item"><a class="nav__link" href="#/voluntario" data-rota="voluntario">Seja voluntário</a></li>
+          <li class="nav__item"><a class="nav__link" href="#/matches" data-rota="matches">Matches <span class="contador" data-contador-matches hidden>0</span></a></li>
+        </ul>
+      </nav>
+
+      <button class="btn btn--destaque btn--sm header__doar" data-doar>💛 Doar</button>
+    </div>
+  </header>
+
+  <!-- ===== ÁREA DINÂMICA: o router injeta aqui o template de cada rota ===== -->
+  <main id="app" tabindex="-1"></main>
+
+  <!-- ===== RODAPÉ ===== -->
+  <footer class="footer">
+    <div class="container footer__colunas">
+      <section>
+        <a class="logo logo--claro" href="#/inicio"><img src="img/logo.svg" alt="" width="40" height="40"><span>Patinha<strong>Solidária</strong></span></a>
+        <p>Desde 2026 resgatando, cuidando e encontrando lares para animais em situação de rua e maus-tratos.</p>
+      </section>
+      <nav aria-label="Links do rodapé">
+        <h2>Navegue</h2>
+        <a href="#/adotar">Adotar um pet</a>
+        <a href="#/projetos">Projetos</a>
+        <a href="#/voluntario">Seja voluntário</a>
+        <a href="#/quiz">Quiz do match</a>
+      </nav>
+      <section>
+        <h2>Contato</h2>
+        <a href="mailto:yuridosanjospereira@gmail.com">yuridosanjospereira@gmail.com</a>
+        <a href="tel:+5541991240896">(41) 99124-0896</a>
+        <span>Atuação 100% online</span>
+      </section>
+    </div>
+    <div class="container footer__base">
+      <p>© <span data-ano>2026</span> Patinha Solidária · Projeto acadêmico</p>
+      <p>Feito com 💛, HTML, CSS e JavaScript</p>
+    </div>
+  </footer>
+
+  <!-- ===== COMPONENTES GLOBAIS ===== -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-titulo" aria-hidden="true">
+    <div class="modal__janela">
+      <div class="modal__cabecalho">
+        <h2 id="modal-titulo"></h2>
+        <button class="btn-icone modal__fechar" data-fechar-modal aria-label="Fechar janela">✕</button>
+      </div>
+      <div class="modal__corpo"></div>
+    </div>
+  </div>
+  <div class="toasts" role="status" aria-live="polite"></div>
+  <button class="topo-btn" aria-label="Voltar ao topo">↑</button>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
