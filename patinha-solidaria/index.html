@@ -9,16 +9,29 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <link rel="icon" href="imagens/logo.svg" type="image/svg+xml">
 </head>
 <body>
   <a class="pular-link" href="#app">Pular para o conteúdo</a>
+
+  <!-- ===== BARRA DE ACESSIBILIDADE ===== -->
+  <div class="barra-a11y" role="region" aria-label="Recursos de acessibilidade">
+    <div class="container barra-a11y__conteudo">
+      <span class="barra-a11y__titulo" aria-hidden="true">Acessibilidade</span>
+      <button class="barra-a11y__botao" data-a11y="contraste" aria-pressed="false">◐ Alto contraste</button>
+      <div class="barra-a11y__fonte" role="group" aria-label="Tamanho do texto">
+        <button class="barra-a11y__botao" data-a11y="fonte-menos" aria-label="Diminuir tamanho do texto">A−</button>
+        <span data-a11y-escala aria-live="polite">100%</span>
+        <button class="barra-a11y__botao" data-a11y="fonte-mais" aria-label="Aumentar tamanho do texto">A+</button>
+      </div>
+    </div>
+  </div>
 
   <!-- ===== CABEÇALHO (fixo em todas as "páginas" da SPA) ===== -->
   <header class="header">
     <div class="container header__barra">
       <a class="logo" href="#/inicio" aria-label="Patinha Solidária, página inicial">
-        <img src="img/logo.svg" alt="" width="40" height="40">
+        <img src="imagens/logo.svg" alt="" width="40" height="40">
         <span>Patinha<strong>Solidária</strong></span>
       </a>
 
@@ -52,12 +65,13 @@
 
   <!-- ===== ÁREA DINÂMICA: o router injeta aqui o template de cada rota ===== -->
   <main id="app" tabindex="-1"></main>
+  <noscript><p class="container">Este site precisa de JavaScript ativado para funcionar. Ative-o nas configurações do seu navegador.</p></noscript>
 
   <!-- ===== RODAPÉ ===== -->
   <footer class="footer">
     <div class="container footer__colunas">
       <section>
-        <a class="logo logo--claro" href="#/inicio"><img src="img/logo.svg" alt="" width="40" height="40"><span>Patinha<strong>Solidária</strong></span></a>
+        <a class="logo logo--claro" href="#/inicio"><img src="imagens/logo.svg" alt="" width="40" height="40"><span>Patinha<strong>Solidária</strong></span></a>
         <p>Desde 2026 resgatando, cuidando e encontrando lares para animais em situação de rua e maus-tratos.</p>
       </section>
       <nav aria-label="Links do rodapé">
@@ -72,6 +86,7 @@
         <a href="mailto:yuridosanjospereira@gmail.com">yuridosanjospereira@gmail.com</a>
         <a href="tel:+5541991240896">(41) 99124-0896</a>
         <span>Atuação 100% online</span>
+        <button class="link-inline link-inline--claro" data-carregar-html="html/politica-privacidade.html" data-titulo="Política de privacidade">Política de privacidade</button>
       </section>
     </div>
     <div class="container footer__base">
