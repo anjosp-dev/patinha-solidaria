@@ -17,6 +17,7 @@ import { observarRevelacoes } from "./componentes/efeitos.js";
 const ROTAS = { inicio, adotar, pet, matches, projetos, quiz, voluntario };
 
 let limparPaginaAtual = null;
+let primeiraRenderizacao = true;
 
 /* Lê o hash e separa rota, id e parâmetros.
    Ex.: "#/pet/3"            → { rota: "pet", params: { id: "3" } }
@@ -49,7 +50,11 @@ function renderizar() {
   document.title = `${titulo} | Patinha Solidária`;
   marcarLinkAtivo(rota);
   window.scrollTo({ top: 0, behavior: "instant" });
-  app.focus({ preventScroll: true });
+  /* Acessibilidade: nas trocas de página, o foco vai para o conteúdo novo
+     (leitores de tela anunciam a mudança). Na primeira carga, não, para que
+     o primeiro Tab encontre o link "Pular para o conteúdo". */
+  if (!primeiraRenderizacao) app.focus({ preventScroll: true });
+  primeiraRenderizacao = false;
 
   /* 4. ativa os comportamentos da página */
   if (pagina.init) limparPaginaAtual = pagina.init(app, params);
