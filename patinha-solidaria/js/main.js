@@ -10,8 +10,10 @@ import { iniciarDoacoes } from "./componentes/doacoes.js";
 import { iniciarEfeitosGlobais } from "./componentes/efeitos.js";
 import "./componentes/alerta.js";
 import { preCarregar } from "./utils/celebrar.js";
+import { iniciarAcessibilidade } from "./componentes/acessibilidade.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  iniciarAcessibilidade();
   iniciarMenu();
   iniciarModal();
   iniciarMatches();
@@ -19,5 +21,14 @@ document.addEventListener("DOMContentLoaded", () => {
   iniciarEfeitosGlobais();
   iniciarRouter();
   preCarregar();
+
+  /* Acessibilidade: o link "Pular para o conteúdo" não pode mudar o hash,
+     senão o router tentaria abrir a rota "#app" (página 404) */
+  document.querySelector(".pular-link").addEventListener("click", (e) => {
+    e.preventDefault();
+    const app = document.getElementById("app");
+    app.focus();
+    app.scrollIntoView();
+  });
   document.querySelectorAll("[data-ano]").forEach((el) => (el.textContent = new Date().getFullYear()));
 });

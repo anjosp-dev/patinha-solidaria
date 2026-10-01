@@ -20,6 +20,7 @@ export default {
         <div class="progresso__info"><span>Meta geral: <strong data-valor>${moeda(t.total)}</strong> de ${moeda(t.meta)}</span><strong data-pct>${t.porcentagem}%</strong></div>
         <div class="progresso__trilho"><div class="progresso__barra" data-progresso="${t.porcentagem}"></div></div>
       </div>
+      <h2 class="visualmente-oculto">Lista de projetos</h2>
       <div class="grade-projetos">${PROJETOS.map(cardProjeto).join("")}</div>
     </section>
     <section class="secao container" aria-labelledby="titulo-historico">

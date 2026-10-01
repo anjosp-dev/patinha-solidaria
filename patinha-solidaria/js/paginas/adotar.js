@@ -15,7 +15,8 @@ export default {
       <p class="texto-suave">Arraste o card para a direita para dar match 💛 ou para a esquerda para ver o próximo.</p>
     </section>
 
-    <section class="container match" aria-label="Modo match">
+    <section class="container match" aria-labelledby="titulo-match">
+      <h2 id="titulo-match" class="visualmente-oculto">Modo match</h2>
       <div class="match__pilha" aria-live="polite"></div>
       <div class="match__controles">
         <button class="match__botao match__botao--nao" data-acao="passar" aria-label="Passar para o próximo pet">✕</button>
@@ -102,6 +103,12 @@ export default {
         return;
       }
       pilha.innerHTML = restantes.map(cardMatch).reverse().join("");
+      /* Só o card do topo recebe foco e é lido pelo leitor de tela */
+      $$(".match-card", pilha).forEach((c, i, todos) => {
+        const topo = i === todos.length - 1;
+        c.tabIndex = topo ? 0 : -1;
+        if (!topo) c.setAttribute("aria-hidden", "true");
+      });
       ativarArraste(pilha.lastElementChild);
     };
 
