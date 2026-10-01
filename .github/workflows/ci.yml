@@ -1,0 +1,32 @@
+# Integração contínua da Patinha Solidária
+name: CI
+
+on:
+  pull_request:
+    branches: [develop, main]
+  push:
+    branches: [develop, main]
+
+jobs:
+  testes-e-build:
+    name: Testes e build de produção
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar o código
+        uses: actions/checkout@v4
+      - name: Configurar Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Instalar dependências (esbuild)
+        run: npm install
+      - name: Executar testes automatizados
+        run: npm test
+      - name: Gerar build de produção
+        run: npm run build
+      - name: Conferir arquivos gerados
+        run: |
+          test -f docs/index.html
+          test -f docs/js/app.min.js
+          test -f docs/css/style.min.css
+          echo "Build validado com sucesso"
