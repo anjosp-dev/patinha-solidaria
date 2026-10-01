@@ -200,6 +200,7 @@ h3 { font-size: var(--fonte-lg); }
 .ajuda__card--destaque { background: var(--cor-destaque); }
 .ajuda__icone { font-size: 2.4rem; transition: transform 0.4s var(--mola); }
 .ajuda__card:hover .ajuda__icone { transform: scale(1.25) rotate(-10deg); }
+.ajuda__card--destaque .ajuda__link { color: var(--cor-texto); }
 .ajuda__link { margin-top: auto; padding-top: var(--espaco-2); font-weight: 700; color: var(--cor-primaria); }
 
 /* ---------- 9. PROGRESSO / META ---------- */
@@ -284,7 +285,7 @@ h3 { font-size: var(--fonte-lg); }
 .ficha dd { font-weight: 700; }
 .apagado { opacity: 0.25; }
 .compat { display: flex; flex-direction: column; gap: 4px; font-weight: 600; }
-.compat .sim { color: var(--cor-sucesso); }
+.compat .sim { color: #25663F; } /* contraste 5,74:1 sobre a areia (WCAG AA) */
 .compat .nao { color: var(--cor-texto-suave); }
 .perfil__acoes { display: flex; flex-wrap: wrap; gap: var(--espaco-3); width: 100%; }
 
@@ -434,6 +435,73 @@ select.form__campo { padding-right: 2.6rem; }
 @keyframes barra-tempo { from { width: 100%; } to { width: 0; } }
 @keyframes girar { to { transform: rotate(360deg); } }
 @keyframes aparecer { from { transform: scale(0) rotate(-20deg); } to { transform: none; } }
+
+/* ---------- 20.1 BARRA DE ACESSIBILIDADE ---------- */
+.barra-a11y { background: var(--cor-texto); color: #fff; font-size: 0.85rem; }
+.barra-a11y__conteudo { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: var(--espaco-3); min-height: 40px; padding-block: 4px; }
+.barra-a11y__titulo { margin-right: auto; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.75rem; opacity: 0.85; }
+.barra-a11y__fonte { display: flex; align-items: center; gap: var(--espaco-2); }
+.barra-a11y__botao { min-height: 32px; min-width: 32px; padding: 0 0.7rem; border-radius: var(--raio-pill); border: 1px solid rgba(255, 255, 255, 0.5); color: #fff; font-weight: 700; transition: background-color var(--transicao), color var(--transicao); }
+.barra-a11y__botao:hover, .barra-a11y__botao[aria-pressed="true"] { background: var(--cor-destaque); color: var(--cor-texto); border-color: var(--cor-destaque); }
+.barra-a11y__botao:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ---------- 20.2 TEMA DE ALTO CONTRASTE ---------- */
+html[data-contraste="alto"] {
+  --cor-primaria: #FFE14D;
+  --cor-primaria-escura: #000000;
+  --cor-primaria-clara: #1A1A1A;
+  --cor-destaque: #FFE14D;
+  --cor-destaque-escura: #FFE14D;
+  --cor-destaque-clara: #1A1A1A;
+  --cor-fundo: #000000;
+  --cor-superficie: #000000;
+  --cor-texto: #FFFFFF;
+  --cor-texto-suave: #FFFFFF;
+  --cor-borda: #FFFFFF;
+  --cor-sucesso: #7CFF9B;
+  --cor-erro: #FF8A80;
+  --cor-info: #8AC7FF;
+  --sombra-suave: none;
+  --sombra-media: none;
+}
+html[data-contraste="alto"] body { background: #000; }
+html[data-contraste="alto"] a:not(.btn) { text-decoration: underline; text-underline-offset: 3px; }
+html[data-contraste="alto"] :focus-visible { outline: 4px solid #FFE14D; outline-offset: 3px; }
+html[data-contraste="alto"] .barra-a11y { background: #000; border-bottom: 2px solid #FFE14D; }
+html[data-contraste="alto"] .header, html[data-contraste="alto"] .hero, html[data-contraste="alto"] .footer, html[data-contraste="alto"] .secao--escura { background: #000; border-color: #FFE14D; }
+html[data-contraste="alto"] .header { border-bottom: 2px solid #FFE14D; }
+html[data-contraste="alto"] .hero { border-bottom: 2px solid #FFE14D; }
+html[data-contraste="alto"] .hero__conteudo p, html[data-contraste="alto"] .meta p, html[data-contraste="alto"] .secao--escura { color: #fff; }
+html[data-contraste="alto"] .bolha, html[data-contraste="alto"] .progresso__barra::after { display: none; }
+html[data-contraste="alto"] .btn--primario, html[data-contraste="alto"] .btn--destaque,
+html[data-contraste="alto"] .badge--cao, html[data-contraste="alto"] .badge--gato,
+html[data-contraste="alto"] .chip input:checked + span, html[data-contraste="alto"] .quiz__opcao--escolhida,
+html[data-contraste="alto"] .btn-match--ativo, html[data-contraste="alto"] .contador { background: #FFE14D; color: #000; border-color: #FFE14D; }
+html[data-contraste="alto"] .btn--primario:hover, html[data-contraste="alto"] .btn--destaque:hover { background: #fff; color: #000; }
+html[data-contraste="alto"] .btn--contorno, html[data-contraste="alto"] .btn--claro { background: #000; color: #FFE14D; border-color: #FFE14D; }
+html[data-contraste="alto"] .btn--contorno:hover, html[data-contraste="alto"] .btn--claro:hover { background: #FFE14D; color: #000; }
+html[data-contraste="alto"] .card-pet, html[data-contraste="alto"] .card-projeto, html[data-contraste="alto"] .ajuda__card,
+html[data-contraste="alto"] .numero, html[data-contraste="alto"] .form, html[data-contraste="alto"] .historico,
+html[data-contraste="alto"] .cadastros, html[data-contraste="alto"] .quiz__caixa, html[data-contraste="alto"] .modal__janela,
+html[data-contraste="alto"] .progresso--cartao, html[data-contraste="alto"] .ficha div, html[data-contraste="alto"] .toast,
+html[data-contraste="alto"] .match__botao, html[data-contraste="alto"] .btn-match, html[data-contraste="alto"] .hero__pet { background: #000; color: #fff; border: 2px solid #fff; }
+html[data-contraste="alto"] .ajuda__card--destaque, html[data-contraste="alto"] .cta-quiz { background: #000; background-image: none; border: 2px solid #FFE14D; color: #fff; }
+html[data-contraste="alto"] .ajuda__card--destaque .ajuda__link, html[data-contraste="alto"] .ajuda__link { color: #FFE14D; }
+html[data-contraste="alto"] .badge--tag, html[data-contraste="alto"] .badge--vidro { background: #000; color: #fff; border: 1px solid #fff; }
+html[data-contraste="alto"] .match-card__info { background: #000; border-top: 2px solid #FFE14D; }
+html[data-contraste="alto"] .form__campo { background: #000; color: #fff; border-color: #fff; }
+html[data-contraste="alto"] .form__campo::placeholder { color: #CFCFCF; }
+html[data-contraste="alto"] .form__grupo--erro .form__campo { background: #000; border-color: #FF8A80; border-width: 3px; }
+html[data-contraste="alto"] .alerta { background: #000; color: #fff; border: 2px solid; }
+html[data-contraste="alto"] .alerta__icone, html[data-contraste="alto"] .toast__icone { color: #000; }
+html[data-contraste="alto"] .compat .sim { color: #7CFF9B; }
+html[data-contraste="alto"] .modal { background: rgba(0, 0, 0, 0.85); }
+html[data-contraste="alto"] .nav__lista { background: #000; }
+html[data-contraste="alto"] .nav__toggle { background: #FFE14D; }
+html[data-contraste="alto"] .nav__toggle span, html[data-contraste="alto"] .nav__toggle span::before, html[data-contraste="alto"] .nav__toggle span::after { background: #000; }
+html[data-contraste="alto"] .nav--aberto .nav__toggle span { background: transparent; }
+html[data-contraste="alto"] .submenu { background: #000; border: 2px solid #fff; }
+html[data-contraste="alto"] .topo-btn { background: #FFE14D; color: #000; }
 
 /* =========================================================
    21. BREAKPOINTS (mobile first)

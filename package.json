@@ -1,0 +1,15 @@
+{
+  "name": "patinha-solidaria",
+  "version": "1.0.0",
+  "description": "SPA da ONG Patinha Solidária: adoção, doações e voluntariado para cães e gatos resgatados.",
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "build": "node scripts/build.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.0"
+  },
+  "author": "Yuri Pereira (anjosp-dev)",
+  "license": "MIT"
+}

@@ -12,7 +12,7 @@ import { $, $$, escaparHTML } from "../utils/dom.js";
 const campo = (id, rotulo, atributos, meia = true, ajuda = "") => `
   <div class="form__grupo ${meia ? "form__grupo--metade" : ""}">
     <label class="form__rotulo" for="${id}">${rotulo}</label>
-    <input class="form__campo" id="${id}" name="${id}" ${atributos}>
+    <input class="form__campo" id="${id}" name="${id}" aria-describedby="${id}-erro" ${rotulo.includes("*") ? 'aria-required="true"' : ""} ${atributos}>
     ${ajuda ? `<span class="form__ajuda">${ajuda}</span>` : ""}
     <p class="form__erro" id="${id}-erro" aria-live="polite"></p>
   </div>`;
@@ -51,23 +51,23 @@ export default {
 
         <fieldset class="form__bloco">
           <legend>Como você quer ajudar?</legend>
-          <div class="chips" role="group" aria-label="Áreas de interesse">
+          <div class="chips" role="group" aria-label="Áreas de interesse" aria-describedby="areas-erro">
             ${["Passeios", "Lar temporário", "Eventos de adoção", "Divulgação", "Transporte", "Fotografia"].map((a) => `
               <label class="chip"><input type="checkbox" name="areas" value="${a}"><span>${a}</span></label>`).join("")}
           </div>
           <p class="form__erro" id="areas-erro" aria-live="polite"></p>
           <div class="form__grupo">
             <label class="form__rotulo" for="disponibilidade">Disponibilidade *</label>
-            <select class="form__campo" id="disponibilidade" name="disponibilidade" data-regras="obrigatorio">
+            <select class="form__campo" id="disponibilidade" name="disponibilidade" data-regras="obrigatorio" aria-required="true" aria-describedby="disponibilidade-erro">
               <option value="">Selecione...</option><option>Dias de semana</option><option>Finais de semana</option><option>Qualquer dia</option>
             </select>
-            <p class="form__erro" aria-live="polite"></p>
+            <p class="form__erro" id="disponibilidade-erro" aria-live="polite"></p>
           </div>
           <div class="form__grupo">
             <label class="form__rotulo" for="mensagem">Conte um pouco sobre você *</label>
-            <textarea class="form__campo" id="mensagem" name="mensagem" rows="4" maxlength="300" data-regras="obrigatorio minimo10" placeholder="Por que você quer ser voluntário?"></textarea>
-            <span class="form__contador texto-sm" aria-live="polite">0/300</span>
-            <p class="form__erro" aria-live="polite"></p>
+            <textarea class="form__campo" id="mensagem" name="mensagem" rows="4" maxlength="300" data-regras="obrigatorio minimo10" aria-required="true" aria-describedby="mensagem-erro" placeholder="Por que você quer ser voluntário?"></textarea>
+            <span class="form__contador texto-sm">0/300</span>
+            <p class="form__erro" id="mensagem-erro" aria-live="polite"></p>
           </div>
         </fieldset>
 

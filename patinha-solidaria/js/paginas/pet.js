@@ -66,13 +66,13 @@ export default {
           <p class="texto-suave">Preencha seus dados. Nossa equipe fará uma entrevista rápida antes da adoção.</p>
           <div class="form__grupo">
             <label class="form__rotulo" for="ad-nome">Nome completo *</label>
-            <input class="form__campo" id="ad-nome" data-regras="obrigatorio nome" autocomplete="name">
-            <p class="form__erro" aria-live="polite"></p>
+            <input class="form__campo" id="ad-nome" data-regras="obrigatorio nome" autocomplete="name" aria-required="true" aria-describedby="ad-nome-erro">
+            <p class="form__erro" id="ad-nome-erro" aria-live="polite"></p>
           </div>
           <div class="form__grupo">
             <label class="form__rotulo" for="ad-tel">Telefone / WhatsApp *</label>
-            <input class="form__campo" id="ad-tel" data-mascara="telefone" data-regras="obrigatorio telefone" inputmode="numeric" placeholder="(41) 99999-9999">
-            <p class="form__erro" aria-live="polite"></p>
+            <input class="form__campo" id="ad-tel" data-mascara="telefone" data-regras="obrigatorio telefone" inputmode="numeric" placeholder="(41) 99999-9999" aria-required="true" aria-describedby="ad-tel-erro">
+            <p class="form__erro" id="ad-tel-erro" aria-live="polite"></p>
           </div>
           <div class="modal__acoes">
             <button type="button" class="btn btn--contorno" data-fechar-modal>Cancelar</button>
